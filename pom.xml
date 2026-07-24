@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion> <!-- <modelVersion>: POMモデルのバージョンを指定（通常は4.0.0） -->
+    <groupId>com.example</groupId> <!-- <groupId>: プロジェクトを識別するためのグループID（ドメインの逆順） -->
+    <artifactId>MyPractice</artifactId> <!-- <artifactId>: プロジェクトの名前を指定 -->
+    <version>1.0-SNAPSHOT</version> <!-- <version>: プロジェクトのバージョンを指定 -->
+    <packaging>war</packaging> <!-- <packaging>: 生成されるアーティファクトの形式（jar、war、pomなど） -->
+    <name>My Application</name> <!-- <name>: プロジェクトの人間が読める名前 -->
+
+    <properties> <!-- <properties>: ビルドプロセスや依存関係の設定で使用する変数を定義 -->
+        <maven.compiler.source>17</maven.compiler.source> <!-- Javaのソースコードのバージョンを指定 -->
+        <maven.compiler.target>17</maven.compiler.target> <!-- Javaのバイトコードのバージョンを指定 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- <project.build.sourceEncoding>: ソースコードの文字エンコーディングを指定 -->
+    </properties>
+
+    <dependencies> <!-- <dependencies>: プロジェクトが依存する外部ライブラリやモジュールを定義 -->
+        <dependency> <!-- 各<dependency>タグ内でライブラリの詳細を指定 -->
+            <groupId>jakarta.servlet</groupId> <!-- 依存ライブラリのグループID -->
+            <artifactId>jakarta.servlet-api</artifactId> <!-- 依存ライブラリの名前 -->
+            <version>5.0.0</version> <!-- 依存ライブラリのバージョン -->
+            <scope>provided</scope> <!-- <scope>: 依存関係の適用範囲（providedはTomcatの同梱版を使用する意味） -->
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build> <!-- <build>: プロジェクトのビルドプロセスをカスタマイズする設定を行う -->
+        <sourceDirectory>${project.basedir}/src/java</sourceDirectory> <!-- Javaコードの場所を src/java に指定 -->
+        <outputDirectory>${project.basedir}/WEB-INF/classes</outputDirectory> <!-- コンパイル先を直接 WEB-INF/classes に指定 -->
+        <plugins> <!-- <plugins>: ビルド時に使用するプラグインを定義 -->
+            <plugin> <!-- 例: maven-compiler-plugin等。ここではカスタムMVC構成用の設定 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <!-- 「srcとWEB-INFが同階層」を実現するため、プロジェクトルートをWeb領域に指定 -->
+                    <warSourceDirectory>${project.basedir}</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- ==================================================================================================== -->
+    <!--  以下、今回の最小構成では使用しない主要タグ（当日のリファレンス用としてご利用ください）      -->
+    <!-- ==================================================================================================== -->
+    <!-- <repositories>: 依存関係を取得するためのリモートリポジトリを指定。タグ内で <id><name><url> を指定 -->
+    <!-- <pluginRepositories>: ビルドプラグインを取得するためのリポジトリを指定 -->
+    <!-- <distributionManagement>: ビルドしたアーティファクトの配布先（リリース/スナップショット）リポジトリを指定 -->
+    <!-- <profiles>: ビルド時の設定を環境や目的に応じて切り替えるためのプロファイルを定義 -->
+    <!-- <reporting>: プロジェクトのレポート生成に関する設定を行う -->
+    <!-- <modules>: マルチモジュールプロジェクトの場合、子モジュールを定義 -->
+
+</project>
