@@ -133,7 +133,7 @@
         type="text"
         id="display"
         class="display"
-        value="0"
+        value=""
         readonly>
 
     <div class="buttons">
@@ -219,9 +219,7 @@
 
     </div>
 
-    <div class="status" id="status">
-        JavaScriptで計算します
-    </div>
+    <div class="status" id="status"></div>
 
 </div>
 
